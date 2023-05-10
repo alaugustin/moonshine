@@ -20,6 +20,10 @@ const content = {
       twitter: {
         icon: 'https://moonshinehairsalon.com/img/twitter.png',
         url: 'https://twitter.com/MoonshineSalon',
+      },
+      instagram: {
+        icon: 'https://moonshinehairsalon.com/img/twitter.png',
+        url: 'https://www.instagram.com/moonshinesalon/',
       }
     }
   },
