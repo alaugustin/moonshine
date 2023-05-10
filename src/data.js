@@ -26,7 +26,7 @@ const content = {
   main: {
     tagLine: 'The best in all types of hair designs',
     services: ['Curls', 'Texturizing', 'Braids', 'Twists', 'Weave', 'Relaxer', 'Soft (Jheri) Curls', 'Colouring', 'Perm', 'Hot Press', 'Highlights', 'Creative Men\'s Cut', 'Boy\'s Cut', 'Kid\'s Hairdo'],
-    aboutUs: 'Our team of creative Hairstylists and Barbers have a passion for working with hair and have been providing quality haircuts and services in a family-friendly space for XX years.'
+    aboutUs: 'Our team of creative Hairstylists and Barbers have a passion for working with hair and have been providing quality haircuts and services in a family-friendly space for 22 years.'
   }
 };
 
