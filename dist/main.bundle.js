@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/data.js":
+/*!*********************!*\
+  !*** ./src/data.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst content = {\n  siteName: 'Moonshine Unisex Hair Salon',\n  sitePhoto: 'https://moonshinehairsalon.com/img/moonshine.jpg',\n  contact: {\n    address: {\n      streetNumber: 1749,\n      unitNumber: 1,\n      street: 'Jane St.',\n      city: 'North York',\n      province: 'ON',\n      postalCode: 'M9N 2S5',\n    },\n    phone: '416.364.8544',\n    email: 'info@moonshinehairsalon.com',\n    social: {\n      faceBook: {\n        icon: 'https://moonshinehairsalon.com/img/facebook.png',\n        url: 'https://www.facebook.com/MoonshineHairSalon',\n      },\n      twitter: {\n        icon: 'https://moonshinehairsalon.com/img/twitter.png',\n        url: 'https://twitter.com/MoonshineSalon',\n      }\n    }\n  },\n  main: {\n    tagLine: 'The best in all types of hair designs',\n    services: ['Curls', 'Texturizing', 'Braids', 'Twists', 'Weave', 'Relaxer', 'Soft (Jheri) Curls', 'Colouring', 'Perm', 'Hot Press', 'Highlights', 'Creative Men\\'s Cut', 'Boy\\'s Cut', 'Kid\\'s Hairdo']\n  }\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (content);\n\n\n//# sourceURL=webpack://moonshine/./src/data.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.scss */ \"./src/styles.scss\");\n\n\nfunction component() {\n  const element = document.createElement('div');\n\n  // Lodash, now imported by this script\n  element.innerHTML = 'Hello world.';\n\n  return element;\n}\n\ndocument.body.appendChild(component());\n\n\n//# sourceURL=webpack://moonshine/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ \"./src/data.js\");\n/* harmony import */ var _styles_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.scss */ \"./src/styles.scss\");\n\n\n\n/* -------------------- new JS template below -------------------- */\nlet moonshine = {\n  version: '2.0.0',\n  author: 'Al Agustin',\n  project: '',\n  Date: '2023',\n\n  // -------------------- INITIALIZATION --------------------\n  init: function () {\n    let context = this;\n\n    // GLOBAL VARIABLES --------------------\n    context.config = {\n      contentData: _data__WEBPACK_IMPORTED_MODULE_0__[\"default\"],\n      headerHolder: document.getElementById('siteName'),\n    };\n\n    // CALL DOM INVOKING FUNCTIONS HERE --------------------\n    moonshine.onDomReady();\n    moonshine.eventHandlers();\n  },\n\n  onDomReady: () => {\n    const siteConfig = moonshine.config;\n\n    moonshine.header();\n    moonshine.main();\n    moonshine.footer();\n  },\n\n  header: () => {\n    const siteConfig = moonshine.config;\n\n    siteConfig.headerHolder.innerText = siteConfig.contentData.siteName;\n  },\n  main: () => {\n    console.log('this is the main');\n  },\n  footer: () => {\n    console.log('this is the footer');\n  },\n\n  // -------------------- HANDLE ALL PAGE LEVEL EVENTS --------------------\n  eventHandlers: () => {\n    const siteConfig = moonshine.config;\n\n    console.log(siteConfig);\n  },\n};\n\n// -------------------- LOAD init() --------------------\nwindow.addEventListener('load', () => {\n  moonshine.init();\n});\n\n\n//# sourceURL=webpack://moonshine/./src/index.js?");
 
 /***/ }),
 
@@ -57,6 +67,18 @@ eval("module.exports = __webpack_require__.p + \"style.css\";\n\n//# sourceURL=w
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -67,6 +89,11 @@ eval("module.exports = __webpack_require__.p + \"style.css\";\n\n//# sourceURL=w
 /******/ 				if (typeof window === 'object') return window;
 /******/ 			}
 /******/ 		})();
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
