@@ -25,6 +25,7 @@ let moonshine = {
 
   onDomReady: () => {
     const siteConfig = moonshine.config;
+    console.log(siteConfig);
 
     moonshine.header();
     moonshine.main();
@@ -32,9 +33,7 @@ let moonshine = {
   },
 
   header: () => {
-    const siteConfig = moonshine.config;
-
-    siteConfig.headerHolder.innerText = siteConfig.contentData.siteName;
+    console.log('this is the header');
   },
   main: () => {
     console.log('this is the main');
