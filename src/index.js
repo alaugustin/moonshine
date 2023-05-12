@@ -15,7 +15,8 @@ let moonshine = {
     // GLOBAL VARIABLES --------------------
     context.config = {
       contentData: content,
-      headerHolder: document.getElementById('siteName'),
+      estYear: 2001,
+      currentYear: new Date().getFullYear()
     };
 
     // CALL DOM INVOKING FUNCTIONS HERE --------------------
@@ -35,17 +36,37 @@ let moonshine = {
   header: () => {
     console.log('this is the header');
   },
+
   main: () => {
-    console.log('this is the main');
+    const siteConfig = moonshine.config;
+    const yearsOfService = siteConfig.currentYear - siteConfig.estYear;
+    const yearsOfServiceHolder = document.getElementById('yearsOfService');
+    const servicesHolder = document.getElementById('specilties');
+
+    let moonshineServices = siteConfig.contentData.main.services;
+
+    if (yearsOfService > 20) {
+      yearsOfServiceHolder.innerText = `the past ${yearsOfService}`;
+    }
+
+    // REFACTOR BELOW
+    const timeID = setInterval(timeAndDate, 7500);
+    function timeAndDate() {
+
+      let randomNum = Math.floor(Math.random() * moonshineServices.length);
+      servicesHolder.innerText = moonshineServices[randomNum];
+    }
   },
+
   footer: () => {
-    console.log('this is the footer');
+    const siteConfig = moonshine.config;
+    const footerYearHolder = document.getElementById('footerYear');
+    footerYearHolder.innerText = `- ${siteConfig.currentYear}`;
   },
 
   // -------------------- HANDLE ALL PAGE LEVEL EVENTS --------------------
   eventHandlers: () => {
     const siteConfig = moonshine.config;
-
     console.log(siteConfig);
   },
 };
