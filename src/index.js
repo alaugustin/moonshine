@@ -49,18 +49,17 @@ let moonshine = {
       yearsOfServiceHolder.innerText = `the past ${yearsOfService}`;
     }
 
-    // REFACTOR BELOW
-    const timeID = setInterval(timeAndDate, 7500);
-    function timeAndDate() {
-
+    const servicesArrayRandomizer = () => {
       let randomNum = Math.floor(Math.random() * moonshineServices.length);
       servicesHolder.innerText = moonshineServices[randomNum];
-    }
+    };
+    setInterval(servicesArrayRandomizer, 7500);
   },
 
   footer: () => {
     const siteConfig = moonshine.config;
     const footerYearHolder = document.getElementById('footerYear');
+
     footerYearHolder.innerText = `- ${siteConfig.currentYear}`;
   },
 
