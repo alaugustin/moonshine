@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Libre+Franklin:ital,wght@0,400;0,700;1,400;1,700&family=Overpass+Mono:wght@700&display=swap');
 
+:root {
+  --main: #20FFF1;
+  --mainDark: #40E3D8;
+  --magenta: #E356CE;
+  --gold: #E3C129;
+  --brown: #968123;
+}
+
+
+
+
 body {
   font-family: 'Libre Franklin', sans-serif;
 }
@@ -14,4 +25,14 @@ h4,
 h5,
 h6 {
   font-family: 'Overpass Mono', monospace;
+  color: #020c27;
+}
+
+header {
+  h1 {
+    text-shadow: 1px 1px 0px var(--main),
+      2px 2px 0px var(--gold),
+      3px 3px 0px var(--magenta),
+      4px 4px 0px var(--brown);
+  }
 }

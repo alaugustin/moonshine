@@ -16,7 +16,8 @@ let moonshine = {
     context.config = {
       contentData: content,
       estYear: 2001,
-      currentYear: new Date().getFullYear()
+      currentDay: new Date().getDay(),
+      currentYear: new Date().getFullYear(),
     };
 
     // CALL DOM INVOKING FUNCTIONS HERE --------------------
@@ -25,9 +26,6 @@ let moonshine = {
   },
 
   onDomReady: () => {
-    const siteConfig = moonshine.config;
-    console.log(siteConfig);
-
     moonshine.header();
     moonshine.main();
     moonshine.footer();
@@ -54,6 +52,44 @@ let moonshine = {
       servicesHolder.innerText = moonshineServices[randomNum];
     };
     setInterval(servicesArrayRandomizer, 7500);
+
+    const hoursTableStriping = () => {
+      const tableRow = document.querySelectorAll('#hoursTable tr');
+
+      const setDayColurStriping = (dayIndex) => {
+        tableRow[dayIndex].style.backgroundColor = '#20FFF1';
+      };
+
+      switch (siteConfig.currentDay) {
+        case 0:
+          setDayColurStriping(0);
+          break;
+        case 1:
+          setDayColurStriping(1);
+          break;
+        case 2:
+          setDayColurStriping(2);
+          break;
+        case 3:
+          setDayColurStriping(3);
+          break;
+        case 4:
+          setDayColurStriping(4);
+          break;
+        case 5:
+          setDayColurStriping(5);
+          break;
+        case 6:
+          setDayColurStriping(6);
+          break;
+
+        default:
+          console.log('do date data');
+          break;
+      }
+
+    };
+    hoursTableStriping();
   },
 
   footer: () => {
