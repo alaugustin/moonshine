@@ -4,7 +4,7 @@ import './styles.scss';
 /* -------------------- new JS template below -------------------- */
 let moonshine = {
   version: '2.0.0',
-  author: 'Al Agustin',
+  author: 'Al Augustin',
   project: '',
   Date: '2023',
 
@@ -57,7 +57,9 @@ let moonshine = {
       const tableRow = document.querySelectorAll('#hoursTable tr');
 
       const setDayColurStriping = (dayIndex) => {
-        tableRow[dayIndex].style.backgroundColor = '#20FFF1';
+        tableRow[dayIndex].classList.add('font-bold');
+        tableRow[dayIndex].classList.add('text-white');
+        tableRow[dayIndex].style.backgroundColor = '#0670cc'; //TO-DO | add to tailwind config and add class
       };
 
       switch (siteConfig.currentDay) {

@@ -5,6 +5,7 @@
   --vividCyan: #20FFF1;
 
   // Shades
+  --veryPaleCyan: #f8ffff;
   --darkCyan: #118078;
   --veryDarkCyan: #08403c;
 
@@ -43,13 +44,15 @@ h6 {
 }
 
 header {
+  background-color: var(--darkModBlue);
+
   h1 {
-    color: var(--veryDarkCyan);
-    text-shadow: 1px 1px 0px var(--vividCyan),
+    color: var(--veryPaleCyan);
+    text-shadow: 1px 1px 0px var(--veryDarkCyan),
       2px 2px 0px var(--vividYellow),
-      3px 3px 0px var(--lightRed),
+      3px 3px 0px var(--strongRed),
       4px 4px 0px var(--lightMagenta),
-      5px 5px 0px var(--strongYellow);
+      5px 5px 0px var(--mainBlack);
   }
 }
 
