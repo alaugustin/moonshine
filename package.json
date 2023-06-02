@@ -8,7 +8,7 @@
     "dev-server": "npx webpack serve --live-reload",
     "build": "npx webpack",
     "start": "webpack serve --mode=development --open",
-    "build2": "export NODE_ENV=production && webpack"
+    "build-tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/css/style.css --watch"
   },
   "repository": {
     "type": "git",
