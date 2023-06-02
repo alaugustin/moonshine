@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Libre+Franklin:ital,wght@0,400;0,700;1,400;1,700&family=Overpass+Mono:wght@700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vividCyan: #20FFF1;
+  --veryPaleCyan: #f8ffff;
+  --darkCyan: #118078;
+  --veryDarkCyan: #08403c;
+  --strongCyan: #05b3a7;
+  --lightMagenta: #FF3BE2;
+  --vividYellow: #FFD108;
+  --strongYellow: #b3940e;
+  --strongBlue: #0670cc;
+  --darkModBlue: #517899;
+  --lightRed: #FF7F61;
+  --strongRed: #cc0f06;
+  --mainBlack: #020c27;
+  --text-divider-gap: 1rem;
+}
+
+body {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+h1 {
+  font-family: 'Cinzel Decorative', sans-serif;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Overpass Mono', monospace;
+}
+
+header h1 {
+  text-shadow: 1px 1px 0px var(--veryDarkCyan), 2px 2px 0px var(--vividYellow), 3px 3px 0px var(--strongRed), 4px 4px 0px var(--lightMagenta), 5px 5px 0px var(--mainBlack);
+}
+
+.text-divider-holder::before,
+.text-divider-holder::after {
+  content: "";
+  height: 2px;
+  background-color: var(--strongYellow);
+  flex-grow: 1;
+}
+
+.text-divider-holder::before {
+  margin-right: var(--text-divider-gap);
+}
+
+.text-divider-holder::after {
+  margin-left: var(--text-divider-gap);
+}
+
+@media screen and (max-width: 599px) {
+  .text-divider-holder {
+    padding: 0 16px;
+  }
+}

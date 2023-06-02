@@ -1,5 +1,4 @@
 import content from './data';
-import './styles.scss';
 
 /* -------------------- new JS template below -------------------- */
 let moonshine = {
@@ -59,7 +58,7 @@ let moonshine = {
       const setDayColurStriping = (dayIndex) => {
         tableRow[dayIndex].classList.add('font-bold');
         tableRow[dayIndex].classList.add('text-white');
-        tableRow[dayIndex].style.backgroundColor = '#0670cc'; //TO-DO | add to tailwind config and add class
+        tableRow[dayIndex].classList.add('bg-strongBlue');
       };
 
       switch (siteConfig.currentDay) {
