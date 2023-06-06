@@ -13,12 +13,17 @@ module.exports = {
       'strongYellow': '#b3940e',
       'strongBlue': '#0670cc',
       'darkModBlue': '#517899',
+      'lightGrayBlue': '#f1f5f8',
       'lightRed': '#FF7F61',
       'strongRed': '#cc0f06',
       'mainBlack': '#020c27',
       'white': '#fff'
     },
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'topEase0.5': 'top ease 0.5s',
+      }
+    },
   },
   plugins: [],
 };

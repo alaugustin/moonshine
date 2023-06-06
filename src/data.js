@@ -14,7 +14,7 @@ const content = {
     }
   },
   main: {
-    services: ['Curls', 'Texturizing', 'Braids', 'Twists', 'Weave', 'Relaxer', 'Soft (Jheri) Curls', 'Colouring', 'Perm', 'Hot Press', 'Highlights', 'Creative Men\'s Cut', 'Boy\'s Cut', 'Kid\'s Hairdo'],
+    services: ['Curls', 'Texturizing', 'Braids', 'Twists', 'Weave', 'Relaxer', 'Soft (Jheri) Curls', 'Colouring', 'Perm', 'Hot Press', 'Highlights', 'Creative Men\'s Cut', 'Boy\'s Cut', 'Kid\'s Hairdo', 'Ladies hairstyes'],
   },
 };
 
