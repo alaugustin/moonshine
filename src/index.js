@@ -1,11 +1,13 @@
 import content from './data';
 
+const { hour, minute, day, year, sunday, otherDay } = content.contact.hours;
+
 /* -------------------- new JS template below -------------------- */
 let moonshine = {
   version: '2.0.0',
   author: 'Al Augustin',
   project: '',
-  Date: '2023',
+  projectDate: '2023',
 
   // -------------------- INITIALIZATION --------------------
   init: function () {
@@ -13,10 +15,13 @@ let moonshine = {
 
     // GLOBAL VARIABLES --------------------
     context.config = {
-      contentData: content,
       estYear: 2001,
-      currentDay: new Date().getDay(),
-      currentYear: new Date().getFullYear(),
+      currentHour: hour,
+      currentMinute: minute,
+      currentDay: day,
+      currentYear: year,
+      sundayHours: sunday,
+      otherHours: otherDay,
     };
 
     // CALL DOM INVOKING FUNCTIONS HERE --------------------
@@ -25,70 +30,79 @@ let moonshine = {
   },
 
   onDomReady: () => {
-    moonshine.header();
     moonshine.main();
     moonshine.footer();
   },
 
-  header: () => {
-    console.log('this is the header');
-  },
-
   main: () => {
     const siteConfig = moonshine.config;
-    const yearsOfService = siteConfig.currentYear - siteConfig.estYear;
+    const { currentYear, estYear } = siteConfig;
+    const yearsOfService = currentYear - estYear;
     const yearsOfServiceHolder = document.getElementById('yearsOfService');
-    const servicesHolder = document.getElementById('specilties');
+    const servicesHolder = document.getElementById('specialties');
 
-    let moonshineServices = siteConfig.contentData.main.services;
+    let moonshineServices = content.main.services;
 
     if (yearsOfService > 20) {
-      yearsOfServiceHolder.innerText = `the past ${yearsOfService}`;
+      yearsOfServiceHolder.textContent = `the past ${yearsOfService}`;
     }
 
     const servicesArrayRandomizer = () => {
-      let randomNum = Math.floor(Math.random() * moonshineServices.length);
-      servicesHolder.innerText = moonshineServices[randomNum];
+      const randomNum = Math.floor(Math.random() * moonshineServices.length);
+      servicesHolder.textContent = moonshineServices[randomNum];
     };
-    setInterval(servicesArrayRandomizer, 7500);
+    setInterval(servicesArrayRandomizer, 5000);
 
     const hoursTableStriping = () => {
+      const { currentDay, currentHour, currentMinute } = siteConfig;
+      const sundayHours = sunday;
+      const otherHours = otherDay;
       const tableRow = document.querySelectorAll('#hoursTable tr');
 
-      const setDayColurStriping = (dayIndex) => {
+      const setDayColurStriping = (dayIndex, openHour, closedHour) => {
+        const timeCell = tableRow[dayIndex].querySelector('td');
         tableRow[dayIndex].classList.add('font-bold');
-        tableRow[dayIndex].classList.add('text-white');
-        tableRow[dayIndex].classList.add('bg-strongBlue');
+
+        let currentTimeString = String(currentHour) + String(currentMinute);
+
+        const openClosedSwitcher = (storeOpenOrClosed) => {
+          const tableRowClasses = tableRow[dayIndex].classList;
+
+          switch (storeOpenOrClosed) {
+            case 'closed':
+              tableRowClasses.add('bg-lightGrayBlue');
+              timeCell.textContent = 'CLOSED';
+              break;
+
+            default:
+              tableRowClasses.add('text-white');
+              tableRowClasses.add('bg-strongBlue');
+              break;
+          }
+        };
+
+        (currentTimeString >= closedHour && currentTimeString <= openHour) ?
+          openClosedSwitcher('closed') :
+          openClosedSwitcher('open');
       };
 
-      switch (siteConfig.currentDay) {
+      const storeHours = (currentDay === 0) ? sundayHours : otherHours;
+
+      switch (currentDay) {
         case 0:
-          setDayColurStriping(0);
-          break;
         case 1:
-          setDayColurStriping(1);
-          break;
         case 2:
-          setDayColurStriping(2);
-          break;
         case 3:
-          setDayColurStriping(3);
-          break;
         case 4:
-          setDayColurStriping(4);
-          break;
         case 5:
-          setDayColurStriping(5);
-          break;
         case 6:
-          setDayColurStriping(6);
+          setDayColurStriping(currentDay, storeHours.open, storeHours.closed);
           break;
 
         default:
           console.log('do date data');
           break;
       }
-
     };
     hoursTableStriping();
   },
@@ -97,7 +111,7 @@ let moonshine = {
     const siteConfig = moonshine.config;
     const footerYearHolder = document.getElementById('footerYear');
 
-    footerYearHolder.innerText = `- ${siteConfig.currentYear}`;
+    footerYearHolder.textContent = `- ${siteConfig.currentYear}`;
   },
 
   // -------------------- HANDLE ALL PAGE LEVEL EVENTS --------------------
