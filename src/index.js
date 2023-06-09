@@ -48,7 +48,7 @@ let moonshine = {
     }
 
     const servicesArrayRandomizer = () => {
-      const randomNum = Math.floor(Math.random() * moonshineServices.length);
+      let randomNum = Math.floor(Math.random() * moonshineServices.length);
       servicesHolder.textContent = moonshineServices[randomNum];
     };
     setInterval(servicesArrayRandomizer, 5000);
@@ -61,9 +61,12 @@ let moonshine = {
 
       const setDayColurStriping = (dayIndex, openHour, closedHour) => {
         const timeCell = tableRow[dayIndex].querySelector('td');
-        tableRow[dayIndex].classList.add('font-bold');
+        const timeOpened = Number(openHour);
+        const timeClosed = Number(closedHour);
+        const currentTimeString = `${String(currentHour).padStart(2, '0')}${String(currentMinute).padStart(2, '0')}`;
+        const timeNow = Number(currentTimeString);
 
-        let currentTimeString = String(currentHour) + String(currentMinute);
+        tableRow[dayIndex].classList.add('font-bold');
 
         const openClosedSwitcher = (storeOpenOrClosed) => {
           const tableRowClasses = tableRow[dayIndex].classList;
@@ -81,9 +84,11 @@ let moonshine = {
           }
         };
 
-        (currentTimeString >= closedHour && currentTimeString <= openHour) ?
+        (timeNow >= timeClosed) ?
           openClosedSwitcher('closed') :
-          openClosedSwitcher('open');
+          (timeNow >= timeOpened) ?
+            openClosedSwitcher('open') :
+            openClosedSwitcher('closed');
       };
 
       const storeHours = (currentDay === 0) ? sundayHours : otherHours;
