@@ -58,6 +58,8 @@ let moonshine = {
       const sundayHours = sunday;
       const otherHours = otherDay;
       const tableRow = document.querySelectorAll('#hoursTable tr');
+      const storeHours = (currentDay === 0) ? sundayHours : otherHours;
+      const { open, closed } = storeHours;
 
       const setDayColurStriping = (dayIndex, openHour, closedHour) => {
         const timeCell = tableRow[dayIndex].querySelector('td');
@@ -65,16 +67,31 @@ let moonshine = {
         const timeClosed = Number(closedHour);
         const currentTimeString = `${String(currentHour).padStart(2, '0')}${String(currentMinute).padStart(2, '0')}`;
         const timeNow = Number(currentTimeString);
+        const tableRowClasses = tableRow[dayIndex].classList;
 
         tableRow[dayIndex].classList.add('font-bold');
 
+        const addTimeColon = () => {
+          const str = timeOpened.toString();
+          const formattedTime = `${str.slice(0, -2)}:${str.slice(-2)}`;
+
+          return `Opened at ${formattedTime}`;
+        };
+
+        const closedTreatment = (tcTextContent) => {
+          tableRowClasses.add('bg-lightGrayBlue');
+          timeCell.textContent = tcTextContent;
+        };
+
         const openClosedSwitcher = (storeOpenOrClosed) => {
-          const tableRowClasses = tableRow[dayIndex].classList;
 
           switch (storeOpenOrClosed) {
             case 'closed':
-              tableRowClasses.add('bg-lightGrayBlue');
-              timeCell.textContent = 'CLOSED';
+              closedTreatment('CLOSED');
+              break;
+
+            case 'closedAm':
+              closedTreatment(addTimeColon());
               break;
 
             default:
@@ -88,10 +105,8 @@ let moonshine = {
           openClosedSwitcher('closed') :
           (timeNow >= timeOpened) ?
             openClosedSwitcher('open') :
-            openClosedSwitcher('closed');
+            openClosedSwitcher('closedAm');
       };
-
-      const storeHours = (currentDay === 0) ? sundayHours : otherHours;
 
       switch (currentDay) {
         case 0:
@@ -101,7 +116,7 @@ let moonshine = {
         case 4:
         case 5:
         case 6:
-          setDayColurStriping(currentDay, storeHours.open, storeHours.closed);
+          setDayColurStriping(currentDay, open, closed);
           break;
 
         default:
