@@ -40,6 +40,7 @@ let moonshine = {
     const yearsOfService = currentYear - estYear;
     const yearsOfServiceHolder = document.getElementById('yearsOfService');
     const servicesHolder = document.getElementById('specialties');
+    const wordDisplayInterval = 3000;
 
     let moonshineServices = content.main.services;
 
@@ -47,11 +48,27 @@ let moonshine = {
       yearsOfServiceHolder.textContent = `the past ${yearsOfService}`;
     }
 
-    const servicesArrayRandomizer = () => {
-      let randomNum = Math.floor(Math.random() * moonshineServices.length);
-      servicesHolder.textContent = moonshineServices[randomNum];
+    const getRandomWord = () => {
+      return moonshineServices[Math.floor(Math.random() * moonshineServices.length)];
     };
-    setInterval(servicesArrayRandomizer, 5000);
+
+    const fadeOutWord = () => {
+      servicesHolder.classList.add('fade-out-animation');
+    };
+
+    const fadeInWord = () => {
+      servicesHolder.textContent = getRandomWord();
+      servicesHolder.classList.remove('fade-out-animation');
+    };
+
+    const displayRandomWord = () => {
+      fadeOutWord();
+      setTimeout(fadeInWord, 1000);
+    };
+
+    // Display random word initially
+    servicesHolder.textContent = 'Creative unisex hairstyes';
+    setInterval(displayRandomWord, wordDisplayInterval);
 
     const hoursTableStriping = () => {
       const { currentDay, currentHour, currentMinute } = siteConfig;

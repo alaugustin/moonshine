@@ -40,3 +40,37 @@ header h1 {
 .text-divider-holder::after {
   margin-left: var(--text-divider-gap);
 }
+
+/* Specialties animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+#specialties {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.fade-out-animation {
+  animation-name: fade-out;
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
