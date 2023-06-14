@@ -21,22 +21,6 @@
   --text-divider-gap: 1rem;
 }
 
-body {
-  font-family: 'Libre Franklin', sans-serif;
-}
-
-h1 {
-  font-family: 'Cinzel Decorative', sans-serif;
-}
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Overpass Mono', monospace;
-}
-
 header h1 {
   text-shadow: 1px 1px 0px var(--veryDarkCyan), 2px 2px 0px var(--vividYellow), 3px 3px 0px var(--strongRed), 4px 4px 0px var(--lightMagenta), 5px 5px 0px var(--mainBlack);
 }
@@ -55,10 +39,4 @@ header h1 {
 
 .text-divider-holder::after {
   margin-left: var(--text-divider-gap);
-}
-
-@media screen and (max-width: 599px) {
-  .text-divider-holder {
-    padding: 0 16px;
-  }
 }

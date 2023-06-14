@@ -19,10 +19,15 @@ module.exports = {
       'mainBlack': '#020c27',
       'white': '#fff'
     },
+    fontFamily: {
+      'overpass': ['Overpass Mono', 'monospace'],
+      'cinzel': ['Cinzel Decorative', 'sans-serif'],
+      'libre': ['Libre Franklin', 'sans-serif'],
+    },
     extend: {
       transitionProperty: {
         'topEase0.5': 'top ease 0.5s',
-      }
+      },
     },
   },
   plugins: [],
