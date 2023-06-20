@@ -22,6 +22,8 @@ let moonshine = {
       currentYear: year,
       sundayHours: sunday,
       otherHours: otherDay,
+      bodyTag: document.querySelector('body'),
+      footerYearHolder: document.getElementById('footerYear'),
     };
 
     // CALL DOM INVOKING FUNCTIONS HERE --------------------
@@ -34,19 +36,27 @@ let moonshine = {
     moonshine.footer();
   },
 
-  main: () => {
+  showOnLoad: () => {
+    const siteConfig = moonshine.config;
+    siteConfig.bodyTag.classList.remove('hidden');
+  },
+
+  setYearsOfService: () => {
     const siteConfig = moonshine.config;
     const { currentYear, estYear } = siteConfig;
     const yearsOfService = currentYear - estYear;
     const yearsOfServiceHolder = document.getElementById('yearsOfService');
-    const servicesHolder = document.getElementById('specialties');
-    const wordDisplayInterval = 3000;
-
-    let moonshineServices = content.main.services;
 
     if (yearsOfService > 20) {
       yearsOfServiceHolder.textContent = `the past ${yearsOfService}`;
     }
+  },
+
+  specialtiesRandomizer: () => {
+    const servicesHolder = document.getElementById('specialties');
+    const wordDisplayInterval = 3000;
+
+    let moonshineServices = content.main.services;
 
     const getRandomWord = () => {
       return moonshineServices[Math.floor(Math.random() * moonshineServices.length)];
@@ -69,96 +79,103 @@ let moonshine = {
     // Display random word initially
     servicesHolder.textContent = 'Creative unisex hairstyes';
     setInterval(displayRandomWord, wordDisplayInterval);
+  },
 
-    const hoursTableStriping = () => {
-      const { currentDay, currentHour, currentMinute } = siteConfig;
-      const sundayHours = sunday;
-      const otherHours = otherDay;
-      const tableRow = document.querySelectorAll('#hoursTable tr');
-      const storeHours = (currentDay === 0) ? sundayHours : otherHours;
-      const { open, closed } = storeHours;
+  hoursTableStriping: () => {
+    const siteConfig = moonshine.config;
+    const { currentDay, currentHour, currentMinute } = siteConfig;
+    const sundayHours = sunday;
+    const otherHours = otherDay;
+    const tableRow = document.querySelectorAll('#hoursTable tr');
+    const storeHours = (currentDay === 0) ? sundayHours : otherHours;
+    const { open, closed } = storeHours;
 
-      const setDayColurStriping = (dayIndex, openHour, closedHour) => {
-        const timeCell = tableRow[dayIndex].querySelector('td');
-        const timeOpened = Number(openHour);
-        const timeClosed = Number(closedHour);
-        const currentTimeString = `${String(currentHour).padStart(2, '0')}${String(currentMinute).padStart(2, '0')}`;
-        const timeNow = Number(currentTimeString);
-        const tableRowClasses = tableRow[dayIndex].classList;
+    const setDayColourStriping = (dayIndex, openHour, closedHour) => {
+      const timeCell = tableRow[dayIndex].querySelector('td');
+      const timeOpened = Number(openHour);
+      const timeClosed = Number(closedHour);
+      const currentTimeString = `${String(currentHour).padStart(2, '0')}${String(currentMinute).padStart(2, '0')}`;
+      const timeNow = Number(currentTimeString);
+      const tableRowClasses = tableRow[dayIndex].classList;
 
-        tableRow[dayIndex].classList.add('font-bold');
+      tableRow[dayIndex].classList.add('font-bold');
 
-        const addTimeColon = () => {
-          const str = timeOpened.toString();
-          const formattedTime = `${str.slice(0, -2)}:${str.slice(-2)}`;
+      const addTimeColon = () => {
+        const str = timeOpened.toString();
+        const formattedTime = `${str.slice(0, -2)}:${str.slice(-2)}`;
 
-          return `Opened at ${formattedTime}`;
-        };
-
-        const closedTreatment = (tcTextContent) => {
-          tableRowClasses.add('bg-lightGrayBlue');
-          timeCell.textContent = tcTextContent;
-        };
-
-        const openClosedSwitcher = (storeOpenOrClosed) => {
-
-          switch (storeOpenOrClosed) {
-            case 'closed':
-              closedTreatment('CLOSED');
-              break;
-
-            case 'closedAm':
-              closedTreatment(addTimeColon());
-              break;
-
-            default:
-              tableRowClasses.add('text-white');
-              tableRowClasses.add('bg-strongBlue');
-              break;
-          }
-        };
-
-        (timeNow >= timeClosed) ?
-          openClosedSwitcher('closed') :
-          (timeNow >= timeOpened) ?
-            openClosedSwitcher('open') :
-            openClosedSwitcher('closedAm');
+        return `Opens at ${formattedTime}`;
       };
 
-      switch (currentDay) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-          setDayColurStriping(currentDay, open, closed);
-          break;
+      const closedTreatment = (tcTextContent) => {
+        tableRowClasses.add('bg-lightGrayBlue');
+        timeCell.textContent = tcTextContent;
+      };
 
-        default:
-          console.log('do date data');
-          break;
-      }
+      const openClosedSwitcher = (storeOpenOrClosed) => {
+
+        switch (storeOpenOrClosed) {
+          case 'closed':
+            closedTreatment('CLOSED');
+            break;
+
+          case 'closedAm':
+            closedTreatment(addTimeColon());
+            break;
+
+          default:
+            tableRowClasses.add('text-white');
+            tableRowClasses.add('bg-strongBlue');
+            break;
+        }
+      };
+
+      (timeNow >= timeClosed) ?
+        openClosedSwitcher('closed') :
+        (timeNow >= timeOpened) ?
+          openClosedSwitcher('open') :
+          openClosedSwitcher('closedAm');
     };
-    hoursTableStriping();
+
+    switch (currentDay) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        setDayColourStriping(currentDay, open, closed);
+        break;
+
+      default:
+        console.log('do date data');
+        break;
+    }
+  },
+
+  main: () => {
+    moonshine.setYearsOfService();
+    moonshine.specialtiesRandomizer();
+    moonshine.hoursTableStriping();
   },
 
   footer: () => {
     const siteConfig = moonshine.config;
-    const footerYearHolder = document.getElementById('footerYear');
+    const { footerYearHolder, currentYear } = siteConfig;
 
-    footerYearHolder.textContent = `- ${siteConfig.currentYear}`;
+    footerYearHolder.textContent = `- ${currentYear}`;
   },
 
   // -------------------- HANDLE ALL PAGE LEVEL EVENTS --------------------
   eventHandlers: () => {
     const siteConfig = moonshine.config;
-    console.log(siteConfig);
+    console.log({ siteConfig });
   },
 };
 
 // -------------------- LOAD init() --------------------
 window.addEventListener('load', () => {
   moonshine.init();
+  moonshine.showOnLoad();
 });
