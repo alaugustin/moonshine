@@ -1,6 +1,7 @@
 import content from './data';
 
 const { hour, minute, day, year, sunday, otherDay } = content.contact.hours;
+const { siteName } = content;
 
 /* -------------------- new JS template below -------------------- */
 let moonshine = {
@@ -15,6 +16,7 @@ let moonshine = {
 
     // GLOBAL VARIABLES --------------------
     context.config = {
+      siteName: siteName,
       estYear: 2001,
       currentHour: hour,
       currentMinute: minute,
@@ -23,6 +25,8 @@ let moonshine = {
       sundayHours: sunday,
       otherHours: otherDay,
       bodyTag: document.querySelector('body'),
+      bttDestinationElement: document.querySelector('#allHolder'),
+      mainNavLinks: document.querySelectorAll('#navHolder a'),
       footerYearHolder: document.getElementById('footerYear'),
     };
 
@@ -99,6 +103,7 @@ let moonshine = {
       const tableRowClasses = tableRow[dayIndex].classList;
 
       tableRow[dayIndex].classList.add('font-bold');
+      tableRow[dayIndex].classList.add('drop-shadow');
 
       const addTimeColon = () => {
         const str = timeOpened.toString();
@@ -126,6 +131,7 @@ let moonshine = {
           default:
             tableRowClasses.add('text-white');
             tableRowClasses.add('bg-strongBlue');
+            tableRowClasses.add('drop-shadow');
             break;
         }
       };
@@ -170,7 +176,28 @@ let moonshine = {
   // -------------------- HANDLE ALL PAGE LEVEL EVENTS --------------------
   eventHandlers: () => {
     const siteConfig = moonshine.config;
-    console.log({ siteConfig });
+    const { mainNavLinks, bttDestinationElement, siteName } = siteConfig;
+    const bttLinks = document.querySelectorAll('.backToTop');
+
+    bttLinks.forEach((bttLink) => {
+      bttLink.addEventListener('click', handleBackToTopClick);
+    });
+
+    mainNavLinks.forEach((navLink) => {
+      navLink.addEventListener('click', handleNavLinkClick);
+    });
+
+    function handleBackToTopClick(e) {
+      e.preventDefault();
+      bttDestinationElement.scrollIntoView();
+      window.location.hash = 'home';
+      document.title = `${siteName} | Home`;
+    }
+
+    function handleNavLinkClick(e) {
+      const targetInnerText = e.target.innerText;
+      document.title = `${siteName} | ${targetInnerText}`;
+    }
   },
 };
 
